@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Mahasiswa</title>
+</head>
+<body>
+    <h2>Data Mahasiswa</h2>
+    <form action="#" method="post">
+        <!-- NIM -->
+        <label for="nim">NIM:</label><br>
+        <input type="text" id="nim" name="nim" required><br><br>
+
+        <!-- Nama -->
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama" required><br><br>
+
+        <!-- Tanggal Lahir -->
+        <label for="tgl_lahir">Tgl Lahir (dd-mm-yyyy):</label><br>
+        <input type="text" id="tgl_lahir" name="tgl_lahir" placeholder="dd-mm-yyyy" required><br><br>
+
+        <!-- Jenis Kelamin -->
+        <label>Jenis Kelamin:</label><br>
+        <input type="radio" id="laki" name="jenis_kelamin" value="Laki-Laki" required>
+        <label for="laki">Laki-Laki</label><br>
+        <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan">
+        <label for="perempuan">Perempuan</label><br><br>
+
+        <!-- Alamat di Bandung -->
+        <label for="alamat">Alamat di Bandung:</label><br>
+        <textarea id="alamat" name="alamat" rows="3" cols="30"></textarea><br><br>
+
+        <!-- Tinggal di -->
+        <label for="tinggal">Tinggal di:</label><br>
+        <select id="tinggal" name="tinggal" required>
+            <option value="">--pilih--</option>
+            <option value="Kos/kontrakan">Kos/kontrakan</option>
+            <option value="Rumah saudara">Rumah saudara</option>
+            <option value="Rumah orang tua">Rumah orang tua</option>
+        </select><br><br>
+
+        <!-- Hobi -->
+        <label>Pilih 2 hobi yang paling disukai:</label><br>
+        <input type="checkbox" id="science" name="hobi" value="Science">
+        <label for="science">Science</label><br>
+        <input type="checkbox" id="technology" name="hobi" value="Technology">
+        <label for="technology">Technology</label><br>
+        <input type="checkbox" id="art" name="hobi" value="Art">
+        <label for="art">Art</label><br>
+        <input type="checkbox" id="sport" name="hobi" value="Sport">
+        <label for="sport">Sport</label><br><br>
+
+        <!-- Tombol -->
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
+
