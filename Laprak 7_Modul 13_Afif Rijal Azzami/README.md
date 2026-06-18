@@ -22,8 +22,8 @@
   <h3>Disusun Oleh :</h3>
 
   <p>
-    <strong>Arnanda Setya Nosa Putra</strong><br>
-    <strong>2311102180</strong><br>
+    <strong>Afif Rijal Azzami</strong><br>
+    <strong>2311102235</strong><br>
     <strong>S1 IF-11-04</strong>
   </p>
 
