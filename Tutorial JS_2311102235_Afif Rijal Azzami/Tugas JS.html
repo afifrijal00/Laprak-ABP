@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wireframe Exact Placement</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    
+    .container { max-width: 820px; }
+
+   
+    .wf { border: 1px solid #111; box-sizing: border-box; background:#fff; }
+
+    .logo {
+      aspect-ratio: 1/1;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .sidebar {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sidebar .nav-item {
+      padding: 10px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .banner {
+      min-height: 120px;
+      background: #e6e6e6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .sub-bars .bar {
+      height: 30px;
+      background: #f3f3f3;
+      border: 1px solid #111;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      padding-left: 12px;
+      font-weight: 600;
+    }
+
+    .content-top {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .text-block-top {
+      border: 1px solid #111;
+      padding: 10px;
+      min-height: 120px;
+      flex: 1;
+      text-align: left; 
+    }
+    .image-box {
+      background: #ccc;
+      border: 1px solid #111;
+      width: 220px;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .image-box.alt-bg { background: #ffd54f; }
+
+    .content-below .line {
+      height: 28px;
+      border: 1px solid #111;
+      background: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      text-align: left; 
+    }
+
+    .footer-box {
+      border-top: 6px solid #111;
+      padding: 10px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .gap-vert { margin-bottom: 12px; }
+
+    @media (max-width: 767.98px) {
+      .logo { min-height: 90px; aspect-ratio: auto; }
+      .banner { min-height: 90px; }
+      .image-box { width: 160px; min-height: 160px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-3 mb-4">
+    <div class="row">
+      <!-- KIRI: col-3 -->
+      <div class="col-3">
+        <!-- Logo -->
+        <div class="wf logo">Logo</div>
+
+        <!-- Sidebar vertikal tepat di bawah logo -->
+        <div class="sidebar mt-3">
+          <div class="wf nav-item">Navigasi</div>
+          <div class="wf nav-item">Link 2</div>
+          <div class="wf nav-item">Link 3</div>
+        </div>
+      </div>
+
+      <!-- KANAN: col-9 -->
+      <div class="col-9">
+        <!-- Banner/header (sejajar dengan logo) -->
+        <div class="wf banner">Banner</div>
+
+        <div class="sub-bars mt-3">
+          <div class="bar">Sub Header Bar 1</div>
+          <div class="bar">Sub Header Bar 2</div>
+        </div>
+
+        <div class="mt-3">
+          <div class="content-top">
+            <div id="textBlockTop" class="text-block-top">
+              <div style="margin-bottom:8px;">Baris teks 1 (sejajar kiri gambar)</div>
+              <div style="margin-bottom:8px;">Baris teks 2 (sejajar kiri gambar)</div>
+              <div style="margin-bottom:8px;">Baris teks 3 (sejajar kiri gambar)</div>
+            </div>
+            <div id="imageBox" class="image-box">Gambar</div>
+          </div>
+
+          <div id="contentBelow" class="content-below mt-3">
+            <div class="line">Baris konten 4 (mengisi lebar penuh col-9)</div>
+            <div class="line">Baris konten 5</div>
+            <div class="line">Baris konten 6</div>
+            <div class="line">Baris konten 7</div>
+          </div>
+
+          <div class="mt-3 d-flex flex-column gap-2">
+            <div class="d-flex gap-2 flex-wrap">
+              <button id="btnToggleAlign" class="btn btn-sm btn-primary" type="button">
+                Toggle Align (Center / Right)
+              </button>
+
+              <button id="btnToggleImage" class="btn btn-sm btn-secondary" type="button">
+                Toggle Image Color
+              </button>
+            </div>
+
+            <!-- fungsi sumOdd -->
+            <div class="d-flex gap-2 align-items-center flex-wrap">
+              <label class="mb-0">Min</label>
+              <input id="inputMin" type="number" class="form-control form-control-sm" style="width:100px" value="1">
+              <label class="mb-0">Max</label>
+              <input id="inputMax" type="number" class="form-control form-control-sm" style="width:100px" value="8">
+              <button id="btnCompute" class="btn btn-sm btn-success" type="button">Hitung Jumlah Ganjil</button>
+            </div>
+
+            <!-- hasil -->
+            <div id="resultArea" class="mt-2" style="min-height:28px; font-weight:600;"></div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="footer-box wf">Footer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Menghitung jumlah bilangan ganjil dalam rentang [min, max] (inklusive).
+     * Contoh: min=1, max=8 => 1+3+5+7 = 16
+     */
+    function sumOdd(min, max) {
+      min = Math.trunc(Number(min));
+      max = Math.trunc(Number(max));
+      if (isNaN(min) || isNaN(max)) return 0;
+      if (min > max) {
+        var tmp = min; min = max; max = tmp;
+      }
+      var start = (min % 2 !== 0) ? min : min + 1;
+      var sum = 0;
+      for (var n = start; n <= max; n += 2) {
+        sum += n;
+      }
+      return sum;
+    }
+
+    // --- Toggle alignment ---
+    (function() {
+      var alignState = 'center';
+      var btnAlign = document.getElementById('btnToggleAlign');
+      var textTop = document.getElementById('textBlockTop');
+      var contentBelow = document.getElementById('contentBelow');
+
+      btnAlign.addEventListener('click', function() {
+        alignState = (alignState === 'center') ? 'right' : 'center';
+        textTop.style.textAlign = alignState;
+        var lines = contentBelow.querySelectorAll('.line');
+        lines.forEach(function(el) {
+          el.style.textAlign = alignState;
+        });
+
+        btnAlign.textContent = 'Toggle Align (Center / Right) — Sekarang: ' + alignState;
+      });
+    })();
+
+    (function() {
+      var btnImage = document.getElementById('btnToggleImage');
+      var imageBox = document.getElementById('imageBox');
+
+      btnImage.addEventListener('click', function() {
+        imageBox.classList.toggle('alt-bg');
+        var active = imageBox.classList.contains('alt-bg') ? 'ON' : 'OFF';
+        btnImage.textContent = 'Toggle Image Color — ' + active;
+      });
+    })();
+
+    // --- Hook tombol hitung jumlah ganjil ---
+    (function() {
+      var btnCompute = document.getElementById('btnCompute');
+      var inputMin = document.getElementById('inputMin');
+      var inputMax = document.getElementById('inputMax');
+      var resultArea = document.getElementById('resultArea');
+
+      btnCompute.addEventListener('click', function() {
+        var min = parseInt(inputMin.value, 10);
+        var max = parseInt(inputMax.value, 10);
+
+        if (isNaN(min) || isNaN(max)) {
+          resultArea.textContent = 'Masukkan nilai min dan max yang valid.';
+          return;
+        }
+
+        var sum = sumOdd(min, max);
+        var a = Math.min(min, max);
+        var b = Math.max(min, max);
+        var firstOdd = (a % 2 !== 0) ? a : a + 1;
+        var terms = [];
+        for (var n = firstOdd; n <= b; n += 2) {
+          terms.push(n);
+        }
+
+        resultArea.textContent = 'Hasil: ' + sum + ' (' + terms.join('+') + ')';
+      });
+    })();
+  </script>
+</body>
+</html>
